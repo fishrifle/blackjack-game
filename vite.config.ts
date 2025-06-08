@@ -1,17 +1,16 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-// add the beginning of your app entry
-// import 'vite/modulepreload-polyfill'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
 export default defineConfig({
+  plugins: [react()],
   server: {
-    cors: true, // Enable CORS without specifying origin
+    cors: true,
   },
   build: {
-    // generate .vite/manifest.json in outDir
     manifest: true,
+    outDir: "dist", // ✅ This is required for Vercel to find the output folder
     rollupOptions: {
-      // overwrite default .html entry
-      input: './src/main.tsx', // Ensure this path points to the correct entry file
+      input: "./index.html", // ✅ Ensure this points to your actual index.html location
     },
   },
-})
+});
